@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeBOT Solutions | Implementação de Chatbots Profissionais</title>
+    <meta name="description" content="Especialistas na implementação e configuração de chatbots Laila.io e Umbler Talk. Automatize seu atendimento hoje.">
+    
+    <!-- Google Fonts: Inter (Padrão SaaS Moderno) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Configuração Personalizada Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0D1B2A',    // Azul Escuro
+                            blue: '#1A73E8',    // Azul Vibrante
+                            light: '#F3F4F6',   // Cinza Claro
+                            white: '#FFFFFF',   // Branco Puro
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(26, 115, 232, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Ajustes finos */
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass-nav {
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff, #1A73E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Accordion FAQ */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+    </style>
+</head>
+<body class="bg-brand-white text-gray-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-robot text-brand-blue text-2xl"></i>
+                    <span class="font-bold text-xl text-white tracking-tight">PrimeBOT <span class="text-brand-blue font-light">Solutions</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#servicos" class="text-gray-300 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition">O que fazemos</a>
+                        <a href="#como-funciona" class="text-gray-300 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition">Como Funciona</a>
+                        <a href="#planos" class="text-gray-300 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition">Planos</a>
+                        <a href="#faq" class="text-gray-300 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition">FAQ</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="#contato" class="bg-brand-blue hover:bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition shadow-glow">
+                        Falar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-brand-dark pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-blue rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 -left-24 w-64 h-64 bg-purple-600 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-block px-4 py-1 mb-6 rounded-full bg-gray-800 border border-gray-700">
+                        <span class="text-brand-blue text-xs font-bold uppercase tracking-wider">Automação Profissional</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Implementação Profissional de <span class="text-brand-blue">Chatbots</span> para Sua Empresa.
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed max-w-lg">
+                        Configuramos e personalizamos chatbots nas plataformas <strong>Laila.io</strong> e <strong>Umbler Talk</strong> para automatizar atendimento, vendas e tarefas repetitivas. Foque no seu negócio, nós cuidamos da tecnologia.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contato" class="bg-brand-blue hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-center transition transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-2">
+                            Solicitar Implementação <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://wa.me/" target="_blank" class="border border-gray-600 hover:border-brand-blue text-white hover:text-brand-blue px-8 py-4 rounded-lg font-semibold text-center transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Abstract Illustration / Mockup -->
+                <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="bg-gray-800/50 backdrop-blur-xl border border-gray-700 rounded-2xl p-6 shadow-2xl relative">
+                        <!-- Mock Header -->
+                        <div class="flex items-center border-b border-gray-700 pb-4 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div class="ml-auto text-gray-500 text-xs">Fluxo de Atendimento v2.0</div>
+                        </div>
+                        <!-- Mock Flowchart Visual -->
+                        <div class="space-y-4">
+                            <div class="flex justify-center">
+                                <div class="bg-brand-blue text-white px-4 py-2 rounded-lg text-sm shadow-glow">Início: Olá! 👋</div>
+                            </div>
+                            <div class="flex justify-center h-6 border-l-2 border-dashed border-gray-600 mx-auto w-1"></div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gray-700 text-gray-200 p-3 rounded-lg text-xs text-center border border-gray-600">Opção 1: Vendas</div>
+                                <div class="bg-gray-700 text-gray-200 p-3 rounded-lg text-xs text-center border border-gray-600">Opção 2: Suporte</div>
+                            </div>
+                            <div class="flex justify-center h-6 border-l-2 border-dashed border-gray-600 mx-auto w-1 relative left-1/4"></div>
+                            <div class="flex justify-end">
+                                <div class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm w-1/2 text-center shadow-lg"><i class="fa-brands fa-whatsapp"></i> Transbordo Humano</div>
+                            </div>
+                        </div>
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-3 animate-bounce duration-[3000ms]">
+                            <div class="bg-green-100 p-2 rounded-full">
+                                <i class="fa-solid fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-semibold uppercase">Status</p>
+                                <p class="text-sm font-bold text-gray-800">Ativo e Vendendo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O Que Fazemos Section -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-brand-blue font-semibold tracking-wide uppercase text-sm mb-2">Serviços</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-brand-dark">Especialistas em Automação via WhatsApp</h3>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Não vendemos apenas a ferramenta, entregamos a solução pronta. Seu bot configurado, testado e rodando.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-solid fa-sliders text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Configuração Completa</h4>
+                    <p class="text-gray-500 leading-relaxed">Setup inicial da plataforma (Laila ou Umbler), conexão de QR Code e ajustes de perfil.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-solid fa-diagram-project text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Fluxos Inteligentes</h4>
+                    <p class="text-gray-500 leading-relaxed">Desenho e implementação de menus, submenus e lógica de atendimento humanizada.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-solid fa-file-invoice-dollar text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Automação de Cobrança</h4>
+                    <p class="text-gray-500 leading-relaxed">Envio de lembretes, boletos e follow-ups automáticos para recuperar vendas.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-brands fa-whatsapp text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Setup WhatsApp API</h4>
+                    <p class="text-gray-500 leading-relaxed">Integração oficial ou via emulador, garantindo estabilidade e conformidade.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-solid fa-plug text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Integrações</h4>
+                    <p class="text-gray-500 leading-relaxed">Conectamos seu chatbot ao seu CRM, planilhas ou sistemas via Webhooks.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="group p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                        <i class="fa-solid fa-graduation-cap text-brand-blue text-xl group-hover:text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Treinamento e Suporte</h4>
+                    <p class="text-gray-500 leading-relaxed">Ensinamos sua equipe a operar o painel de atendimento e oferecemos suporte pós-entrega.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section id="como-funciona" class="py-20 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark">Como Funciona Nossa Implementação</h2>
+                <p class="mt-4 text-gray-600">Processo transparente e ágil para colocar seu bot no ar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+                <!-- Steps -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">1</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Análise do Negócio</h4>
+                    <p class="text-sm text-gray-500 mt-2">Entendemos suas dores, script de vendas e necessidades de automação.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">2</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Design do Fluxo</h4>
+                    <p class="text-sm text-gray-500 mt-2">Desenhamos a lógica da conversa para garantir a melhor experiência ao usuário.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">3</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Configuração</h4>
+                    <p class="text-sm text-gray-500 mt-2">Implementação técnica dentro do Laila.io ou Umbler Talk.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">4</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Testes e Validação</h4>
+                    <p class="text-sm text-gray-500 mt-2">Simulamos cenários reais para garantir que não haja erros.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="500">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">5</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Entrega e Treinamento</h4>
+                    <p class="text-sm text-gray-500 mt-2">Entregamos o bot pronto e treinamos sua equipe para uso diário.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 relative" data-aos="fade-up" data-aos-delay="600">
+                    <div class="absolute -top-4 -left-4 w-10 h-10 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">6</div>
+                    <h4 class="mt-2 text-lg font-bold text-brand-dark">Suporte e Otimização</h4>
+                    <p class="text-sm text-gray-500 mt-2">Acompanhamento para ajustes finos e melhorias constantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios Section -->
+    <section class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Por que investir em uma <span class="text-brand-blue">implementação profissional?</span></h2>
+                    <p class="text-gray-400 mb-8 text-lg">Tentar configurar sozinho pode custar tempo e perder leads. Nossa expertise garante conversão.</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-blue text-xl"></i>
+                            <span>Atendimento 24h/7 dias por semana</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-blue text-xl"></i>
+                            <span>Redução drástica de esforço operacional</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-blue text-xl"></i>
+                            <span>Respostas instantâneas para o cliente</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-brand-blue text-xl"></i>
+                            <span>Zero complicação técnica para você</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                    <div class="bg-gray-800 p-6 rounded-2xl text-center border border-gray-700">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-2">+40%</h3>
+                        <p class="text-sm text-gray-400">Conversão em Vendas</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl text-center border border-gray-700">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-2">-80%</h3>
+                        <p class="text-sm text-gray-400">Tempo de Resposta</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl text-center border border-gray-700 col-span-2">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-2">100%</h3>
+                        <p class="text-sm text-gray-400">Automatizado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos Section -->
+    <section id="planos" class="py-20 bg-brand-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark">Nossos Planos de Implementação</h2>
+                <p class="mt-4 text-gray-600">Pagamento único pela configuração. Escolha o nível de automação ideal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Essencial -->
+                <div class="bg-white rounded-2xl shadow-soft border border-gray-200 p-8 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold text-brand-dark">Essencial</h3>
+                    <p class="text-gray-500 text-sm mb-6">Para quem está começando.</p>
+                    <div class="text-3xl font-bold text-brand-dark mb-6">Consulte <span class="text-lg font-normal text-gray-500">/setup</span></div>
+                    
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Configuração Base</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Fluxo de Boas-vindas Simples</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Conexão WhatsApp</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Treinamento Básico (Vídeo)</li>
+                    </ul>
+                    
+                    <a href="#" class="block w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-brand-dark font-semibold rounded-lg text-center transition">Quero este plano</a>
+                </div>
+
+                <!-- Profissional (Destaque) -->
+                <div class="bg-white rounded-2xl shadow-2xl border-2 border-brand-blue p-8 flex flex-col relative transform scale-105 z-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-blue text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Mais Popular</div>
+                    <h3 class="text-xl font-bold text-brand-dark">Profissional</h3>
+                    <p class="text-gray-500 text-sm mb-6">O ideal para PMEs.</p>
+                    <div class="text-3xl font-bold text-brand-dark mb-6">Consulte <span class="text-lg font-normal text-gray-500">/setup</span></div>
+                    
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> <strong>Tudo do Essencial</strong></li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Fluxos Complexos (Menus)</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Integração CRM (Webhook)</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Automação de Disparos</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Treinamento Ao Vivo (1h)</li>
+                    </ul>
+                    
+                    <a href="#" class="block w-full py-3 px-4 bg-brand-blue hover:bg-blue-600 text-white font-semibold rounded-lg text-center transition shadow-lg">Quero este plano</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-white rounded-2xl shadow-soft border border-gray-200 p-8 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold text-brand-dark">Premium</h3>
+                    <p class="text-gray-500 text-sm mb-6">Escala e Suporte total.</p>
+                    <div class="text-3xl font-bold text-brand-dark mb-6">Consulte <span class="text-lg font-normal text-gray-500">/setup</span></div>
+                    
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> <strong>Tudo do Profissional</strong></li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Integração com IA (ChatGPT)</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Dashboard Personalizado</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Suporte Prioritário (30 dias)</li>
+                        <li class="flex items-center gap-2 text-sm text-gray-600"><i class="fa-solid fa-check text-brand-blue"></i> Consultoria de Processos</li>
+                    </ul>
+                    
+                    <a href="#" class="block w-full py-3 px-4 bg-gray-100 hover:bg-gray-200 text-brand-dark font-semibold rounded-lg text-center transition">Quero este plano</a>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-8">* Valores referentes à implementação. A assinatura das plataformas (Laila/Umbler) é paga à parte diretamente ao fornecedor.</p>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="py-20 bg-brand-light">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-brand-dark mb-12">Quem já automatizou conosco</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm text-left" data-aos="fade-up">
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"A configuração do Umbler Talk foi perfeita. Em 3 dias já estávamos atendendo automaticamente e reduzimos o tempo de resposta em 90%."</p>
+                    <p class="font-bold text-brand-dark">— Ricardo Mendes, <span class="font-normal text-gray-500">E-commerce Tech</span></p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm text-left" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex text-yellow-400 mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"A equipe da PrimeBOT entendeu exatamente nosso fluxo de agendamentos. A integração com o Laila.io ficou impecável."</p>
+                    <p class="font-bold text-brand-dark">— Dra. Ana Silva, <span class="font-normal text-gray-500">Clínica Sorrir</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-12">Perguntas Frequentes</h2>
+            
+            <div class="space-y-4">
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer open:bg-white open:shadow-md transition-all duration-300">
+                    <summary class="font-semibold text-brand-dark flex justify-between items-center">
+                        O chatbot é meu?
+                        <i class="fa-solid fa-chevron-down text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 text-sm">Sim! Toda a configuração é feita na sua conta. Nós apenas implementamos. Após a entrega, você tem controle total.</p>
+                </details>
+
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer open:bg-white open:shadow-md transition-all duration-300">
+                    <summary class="font-semibold text-brand-dark flex justify-between items-center">
+                        Preciso contratar a plataforma (Laila/Umbler) separadamente?
+                        <i class="fa-solid fa-chevron-down text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 text-sm">Sim. Nós vendemos o serviço de inteligência e configuração. Você precisará de uma assinatura ativa no Laila.io ou Umbler Talk (ajudamos a escolher o melhor plano).</p>
+                </details>
+
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer open:bg-white open:shadow-md transition-all duration-300">
+                    <summary class="font-semibold text-brand-dark flex justify-between items-center">
+                        Quanto tempo leva a implementação?
+                        <i class="fa-solid fa-chevron-down text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 text-sm">Projetos simples levam de 3 a 5 dias úteis. Projetos complexos com integrações podem levar até 10 dias úteis após o briefing.</p>
+                </details>
+
+                <details class="bg-gray-50 p-4 rounded-lg cursor-pointer open:bg-white open:shadow-md transition-all duration-300">
+                    <summary class="font-semibold text-brand-dark flex justify-between items-center">
+                        Vocês oferecem suporte mensal?
+                        <i class="fa-solid fa-chevron-down text-brand-blue"></i>
+                    </summary>
+                    <p class="mt-3 text-gray-600 text-sm">Oferecemos suporte gratuito por 15 dias após a entrega (garantia). Após isso, temos planos de manutenção opcionais se você desejar.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contato" class="py-24 bg-brand-dark relative overflow-hidden">
+        <!-- Decorative background -->
+        <div class="absolute top-0 right-0 w-full h-full opacity-30">
+             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-blue rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Pronto para automatizar seu atendimento?</h2>
+            <p class="text-xl text-gray-300 mb-10">Pare de perder tempo com tarefas repetitivas. Deixe a PrimeBOT configurar sua máquina de vendas.</p>
+            <a href="https://wa.me/" class="inline-flex items-center justify-center px-8 py-5 text-lg font-bold text-white bg-green-600 rounded-full hover:bg-green-700 transition transform hover:scale-105 shadow-2xl">
+                <i class="fa-brands fa-whatsapp mr-3 text-2xl"></i> Falar com Consultor no WhatsApp
+            </a>
+            <p class="mt-6 text-sm text-gray-500">Resposta rápida em horário comercial.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-robot text-brand-blue text-xl"></i>
+                        <span class="font-bold text-lg text-white">PrimeBOT</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Especialistas em implementação de chatbots para Laila.io e Umbler Talk.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-blue transition">Sobre</a></li>
+                        <li><a href="#" class="hover:text-brand-blue transition">Planos</a></li>
+                        <li><a href="#" class="hover:text-brand-blue transition">Carreiras</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-blue transition">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-brand-blue transition">Privacidade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-blue transition">contato@primebot.com</a></li>
+                        <li><a href="#" class="hover:text-brand-blue transition">+55 11 99999-9999</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-600">
+                &copy; 2023 PrimeBOT Solutions. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true, // animação acontece apenas uma vez
+            offset: 100, // offset (em px) do ponto de disparo original
+            duration: 800, // duração da animação
+            easing: 'ease-out-cubic', // easing function
+        });
+    </script>
+</body>
+</html>
